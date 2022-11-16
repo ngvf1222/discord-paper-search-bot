@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder } = require('discord.js');
 const natureparsing = require('../n');
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -45,7 +46,22 @@ module.exports = {
 		const papers = await natureparsing(interaction.options.getString('query'),interaction.options.getString('author') ?? '',interaction.options.getString('title') ?? '',interaction.options.getString('journals') ?? '',interaction.options.getString('volume') ?? '',interaction.options.getInteger('spage') ?? 0,interaction.options.getString('order') ?? 'relevance',interaction.options.getInteger('date_rangestart') ?? 0,interaction.options.getInteger('date_rangeend') ?? 0,interaction.options.getInteger('page') ?? 1)
 		await interaction.editReply('Ready!');
 		for (let d of papers) {
-			await interaction.followUp('**title:' + d.title + '**\n*description:'+d.description+'\n\nauthors:'+d.authorlist.join()+'\nlink:' + d.url + '\nupdated:' + d.date+'\nOpenaccess:'+d.Openaccess+'*\n=====================================\n');
+			console.log(d)
+			let pEmbed = new EmbedBuilder()
+				.setColor(0x00FFFF)
+				.setTitle(d.title)
+				.setURL(d.url)
+				.setAuthor({ name: d.authorlist.join()==''?'none':d.authorlist.join(), iconURL: 'https://i.ibb.co/rf1qByR/GZWnD1mV.png', url: d.url })
+				.setDescription(d.description==''?'none':d.description)
+				.addFields(
+					{ name: 'updated', value: d.date },
+					{ name: 'Openaccess', value: d.Openaccess+"" },
+					{ name: 'Articletype', value: d.Articletype==''?'none':d.Articletype},
+					{ name: 'journal', value: d.journal==''?'none':d.journal},
+				)
+				.addFields({ name: 'volumeandpageinfo', value: d.volumeandpageinfo==''?'none':d.volumeandpageinfo})
+				.setImage(d.image_url=='https:undefined'?'https://i.ibb.co/rf1qByR/GZWnD1mV.png':d.image_url);
+			await interaction.followUp({ embeds: [pEmbed] });
 		}
 		await interaction.followUp('end, papers count:'+papers.length)
 	},

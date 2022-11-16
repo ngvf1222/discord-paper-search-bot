@@ -28,7 +28,7 @@ async function natureparsing(query,author='',title='',journals='',volume='',spag
       ulList[i] = {
           title: $(this).find('div.u-full-height article div.c-card__layout div.c-card__body h3.c-card__title a.c-card__link').text(),
           url: 'https://www.nature.com'+$(this).find('div.u-full-height article div.c-card__layout div.c-card__body h3.c-card__title a.c-card__link').attr('href'),
-          image_url: $(this).find('div.u-full-height article div.c-card__layout div.c-card__image picture img').attr('src'),
+          image_url: 'https:'+$(this).find('div.u-full-height article div.c-card__layout div.c-card__image picture img').attr('src'),
           description: $(this).find('div.u-full-height article div.c-card__layout div.c-card__body div.c-card__summary p').text(),
           authorlist: s($(this).find('div.u-full-height article div.c-card__layout div.c-card__body ul.c-author-list').children("li").map(function(d){
             return $(this).find("span").text();
@@ -47,3 +47,6 @@ async function natureparsing(query,author='',title='',journals='',volume='',spag
   .then(res =>res);
 }
 module.exports=natureparsing
+/*(async ()=>{
+  log(await natureparsing('math'))
+})();*/
