@@ -48,9 +48,9 @@ module.exports = {
 		let index=0;
 		let row;
 		const filter = i => i.customId === 'hehind';
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 600000 });
 		const filter2 = i => i.customId === 'next';
-		const collector2 = interaction.channel.createMessageComponentCollector({ filter2, time: 15000 });
+		const collector2 = interaction.channel.createMessageComponentCollector({ filter2, time: 600000 });
 		let d=papers[index]
         	let pEmbed = new EmbedBuilder()
 				.setColor(0x00FFFF)
