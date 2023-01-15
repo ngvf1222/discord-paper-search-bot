@@ -45,6 +45,9 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.deferReply();
 		const papers = await natureparsing(interaction.options.getString('query'),interaction.options.getString('author') ?? '',interaction.options.getString('title') ?? '',interaction.options.getString('journals') ?? '',interaction.options.getString('volume') ?? '',interaction.options.getInteger('spage') ?? 0,interaction.options.getString('order') ?? 'relevance',interaction.options.getInteger('date_rangestart') ?? 0,interaction.options.getInteger('date_rangeend') ?? 0,interaction.options.getInteger('page') ?? 1)
+		if(papers.length===0){
+			await interaction.editReply('no paper!');
+		}else{
 		let index=0;
 		let row;
 		const filter = i => i.customId === 'hehind';
@@ -192,6 +195,7 @@ module.exports = {
 					);
 				}
 			await i.update({ embeds: [pEmbed] , components: [row] });
+			
 		});
 		/*let d=papers[i]
 		let pEmbed = new EmbedBuilder()
@@ -228,5 +232,5 @@ module.exports = {
 			await interaction.followUp({ embeds: [pEmbed] });
 		}
 		await interaction.followUp('end, papers count:'+papers.length)*/
-	},
+	}},
 };//어이 거기 미래에 나! 글자수 제한 때문에 에러난건 내가 해결햇다구!

@@ -29,6 +29,9 @@ module.exports = {
 			start: interaction.options.getInteger('start'),
 			maxResults: interaction.options.getInteger('maxresults'),
 		});
+		if(papers.length===0){
+			await interaction.editReply('no paper!');
+		}else{
 		let index=0;
 		let row;
 		const filter = i => i.customId === 'hehind';
@@ -178,5 +181,5 @@ module.exports = {
 		}
 
 		await interaction.reply(p);*/
-	},
+	}},
 };
