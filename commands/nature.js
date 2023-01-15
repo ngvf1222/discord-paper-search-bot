@@ -79,7 +79,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 					);
 				}else{
@@ -87,7 +87,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 						new ButtonBuilder()
 							.setCustomId('next')
@@ -126,7 +126,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 					);
 				}else{
@@ -134,7 +134,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 						new ButtonBuilder()
 							.setCustomId('next')
@@ -146,6 +146,7 @@ module.exports = {
 		});
 		collector2.on('collect', async i => {
 			index+=1
+			index=index%papers.length
 			let d=papers[index]
         	let pEmbed = new EmbedBuilder()
 				.setColor(0x00FFFF)
@@ -174,7 +175,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 					);
 				}else{
@@ -182,7 +183,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 						new ButtonBuilder()
 							.setCustomId('next')

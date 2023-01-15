@@ -57,8 +57,12 @@ module.exports = {
 					row = new ActionRowBuilder()
 					.addComponents(
 						new ButtonBuilder()
+							.setCustomId('no')
+							.setLabel('No next page')
+							.setStyle(ButtonStyle.Primary),
+						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 					);
 				}else{
@@ -66,7 +70,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 						new ButtonBuilder()
 							.setCustomId('next')
@@ -75,6 +79,7 @@ module.exports = {
 					);
 				}
 				await interaction.editReply({ embeds: [pEmbed] , components: [row] });
+				try{
 				collector.on('collect', async i => {
 					index-=1
 					let d=papers[index]
@@ -100,7 +105,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 					);
 				}else{
@@ -108,7 +113,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 						new ButtonBuilder()
 							.setCustomId('next')
@@ -118,8 +123,12 @@ module.exports = {
 				}
 					await i.update({ embeds: [pEmbed] , components: [row] });
 				});
+			}catch{
+				console.log(d=papers[index])
+			}
 				collector2.on('collect', async i => {
 					index+=1
+					index=index%papers.length
 					let d=papers[index]
 		let pEmbed = new EmbedBuilder()
 				.setColor(0x00FFFF)
@@ -143,7 +152,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 					);
 				}else{
@@ -151,7 +160,7 @@ module.exports = {
 					.addComponents(
 						new ButtonBuilder()
 							.setCustomId('behind')
-							.setLabel('◀')
+							.setLabel('«')
 							.setStyle(ButtonStyle.Primary),
 						new ButtonBuilder()
 							.setCustomId('next')
